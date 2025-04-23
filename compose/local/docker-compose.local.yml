@@ -5,20 +5,19 @@
 services:
   local-app:
     build:
-      context: ../..  # Adjusted to point to the root of the project
+      context: ../.. # Points to root of project
       dockerfile: ./compose/local/app/Dockerfile
       target: development
     image: local_app
     container_name: local_app
-    # Define service dependencies here if needed
     # Uncomment the following line to enable the PostgreSQL service
     # depends_on:
     #   - postgres
     volumes:
-      - ../../:/app:z  # Adjusted to match the new structure
+      - ../../:/app:z
     env_file:
-      - ../../.envs/.local/.app  # Updated path to .env file
-      - ../../.envs/.local/.postgres  # Updated path to .env file
+      - ../../.envs/.local/.app
+      - ../../.envs/.local/.postgres
     ports:
       - '8000:8000'
     command: /start
