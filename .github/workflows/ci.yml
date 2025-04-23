@@ -41,10 +41,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build the Stack
-        run: docker compose -f docker-compose.local.yml build local-app
+        run: docker compose -f compose/local/docker-compose.local.yml build local-app
 
       - name: Build the docs
-        run: docker compose -f docker-compose.docs.yml build docs
+        run: docker compose -f compose/local/docker-compose.docs.yml build docs
 
       - name: Tear down the Stack
-        run: docker compose -f docker-compose.local.yml down
+        run: docker compose -f compose/local/docker-compose.local.yml down

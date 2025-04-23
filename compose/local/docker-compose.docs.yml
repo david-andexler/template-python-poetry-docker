@@ -3,14 +3,14 @@ services:
     image: local_docs
     container_name: local_docs
     build:
-      context: .
+      context: ../..
       dockerfile: ./compose/local/docs/Dockerfile
     env_file:
-      - ./.envs/.local/.app
+      - ../../.envs/.local/.app
     volumes:
-      - ./docs:/docs:z
-      - ./config:/app/config:z
-      - ./app:/app/app:z
+      - ../../docs:/docs:z
+      - ../../app/config:/app/config:z
+      - ../../app:/app/app:z
     ports:
       - '9000:9000'
     command: /start-docs
