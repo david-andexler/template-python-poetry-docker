@@ -11,7 +11,7 @@ Install Docker from
 - [Homebrew](https://formulae.brew.sh/cask/docker)
 - [Chocolatey](https://community.chocolatey.org/packages/docker-desktop)
 
-The following command should run successfully:
+The following command should run successfully (Your version may vary):
 
     $ docker --version
     Docker version 27.5.1, build 9f9e405
@@ -39,6 +39,23 @@ Build and run the project's Sphinx documentation with
     docker compose -f docker-compose.docs.yml up
 
 ## Development
+
+### Building Container
+- In VSCode, open the project folder as a workspace and save workspace to root directory
+- Select Rebuild and Reopen in Container when the option appears to open project in a devcontainer
+- If the devcontainer ever needs rebuilt, Cmd + Shift + P (Mac Default) and select Dev Containers: Rebuild Container
+
+### Source Code
+- All project source code should be placed in `app/`
+- Source code that is added or modified within the container will be reflected on the host machine
+
+### Installing Dependencies
+Poetry is the dependency manager for this project. Dependencies can be added within the devcontainer with:
+
+    $ poetry add PIP_LIBRARY_NAME
+    $ poetry install
+
+- Ensure the generated poetry.lock file is committed to the repository
 
 ### Development Environment
 
