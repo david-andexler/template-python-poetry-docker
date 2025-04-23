@@ -2,7 +2,7 @@
 {
     "name": "app_template_dev",
     "dockerComposeFile": [
-        "../docker-compose.local.yml"
+        "../compose/local/docker-compose.local.yml"
     ],
     "init": true,
     "mounts": [

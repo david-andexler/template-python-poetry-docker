@@ -61,8 +61,8 @@ Poetry is the dependency manager for this project. Dependencies can be added wit
 
 #### Secrets
 
-- Modify .envs/.local/.app or .envs/.local/.postgres for local development environments
-- Modify .envs/.production/.app or .envs/.production/.postgres for production environments
+- Modify `.envs/.local/.app` or `.envs/.local/.postgres` for local development environments.
+- Modify `.envs/.production/.app` or `.envs/.production/.postgres` for production environments.
 
 ### Linting
 

@@ -1,12 +1,11 @@
 # volumes:
 #   local_postgres_data: {}
-#   ocal_postgres_data_backups: {}
-
+#   local_postgres_data_backups: {}
 
 services:
   local-app:
     build:
-      context: .
+      context: ../..  # Adjusted to point to the root of the project
       dockerfile: ./compose/local/app/Dockerfile
       target: development
     image: local_app
@@ -16,10 +15,10 @@ services:
     # depends_on:
     #   - postgres
     volumes:
-      - .:/app:z
+      - ../../:/app:z  # Adjusted to match the new structure
     env_file:
-      - ./.envs/.local/.app
-      - ./.envs/.local/.postgres
+      - ../../.envs/.local/.app  # Updated path to .env file
+      - ../../.envs/.local/.postgres  # Updated path to .env file
     ports:
       - '8000:8000'
     command: /start
@@ -27,7 +26,7 @@ services:
   # Uncomment the following lines to enable the PostgreSQL service
   # postgres:
   #   build:
-  #     context: .
+  #     context: ../..  # Adjusted to point to the root of the project
   #     dockerfile: ./compose/production/postgres/Dockerfile
   #   image: production_postgres
   #   container_name: local_postgres
@@ -35,4 +34,4 @@ services:
   #     - local_postgres_data:/var/lib/postgresql/data
   #     - local_postgres_data_backups:/backups
   #   env_file:
-  #     - ./.envs/.local/.postgres
+  #     - ../../.envs/.local/.postgres  # Updated path to .env file
