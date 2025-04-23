@@ -3,7 +3,7 @@ services:
     image: local_docs
     container_name: local_docs
     build:
-      context: .
+      context: ../..
       dockerfile: ./compose/local/docs/Dockerfile
     env_file:
       - ../../.envs/.local/.app

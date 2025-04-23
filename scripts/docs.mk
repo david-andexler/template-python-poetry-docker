@@ -2,4 +2,4 @@
 
 .PHONY: docs
 docs: # Build and serve docs
-	docker compose -f docker-compose.docs.yml up --build
+	docker compose -f compose/local/docker-compose.docs.yml up --build
