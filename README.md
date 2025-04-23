@@ -1,92 +1,98 @@
 # Template - Python, Poetry, Docker, Devcontainers
 
-Template - Python, Poetry, Docker, Devcontainers
+This repository provides a template for developing Python applications using **Poetry** for dependency management, **Docker** for containerization, and **Devcontainers** for a seamless development environment in **VS Code**. It includes configurations for local development, testing, and production deployment.
+
+## Features
+
+- **Python 3.13**: Latest Python version with modern features.
+- **Poetry**: Dependency and environment management.
+- **Docker Compose**: Pre-configured services for local development and documentation.
+- **Devcontainers**: Ready-to-use development environment in VS Code.
+- **Sphinx Documentation**: Build and serve project documentation.
+- **Pre-commit Hooks**: Automated linting and formatting with tools like `ruff` and `mypy`.
+- **GitHub Actions**: CI/CD pipeline for linting, testing, and building.
+
+## Directory Structure
+
+- app: Application source code.
+- compose: Docker Compose configurations for local and production environments.
+  - `local/`: Local development services (e.g., `local-app`, docs).
+  - `production/`: Production-ready services (e.g., `prod-app`, `postgres`).
+- docs: Sphinx documentation source files.
+- .devcontainer: Devcontainer configuration for VS Code.
+- .envs: Environment variable files for local and production environments.
 
 ## Setup
 
-### Install Docker
+### Prerequisites
 
-Install Docker from
-- [Direct](<https://www.docker.com/products/docker-desktop/>)
-- [Homebrew](https://formulae.brew.sh/cask/docker)
-- [Chocolatey](https://community.chocolatey.org/packages/docker-desktop)
+1. Install **Docker**:
+   - [Docker Desktop](https://www.docker.com/products/docker-desktop)
+   - Verify installation: `docker --version`
 
-The following command should run successfully (Your version may vary):
+2. Install **VS Code** (optional, recommended):
+   - [Download VS Code](https://code.visualstudio.com/download)
+   - Install the **Devcontainers** extension: `ms-vscode-remote.remote-containers`
 
-    $ docker --version
-    Docker version 27.5.1, build 9f9e405
+### Local Development
 
-### Install VSCode (optional, recommended)
-- Install [VSCode](https://code.visualstudio.com/download)
-- Install the [Devcontainers VSCode extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) (ID:
-`ms-vscode-remote.remote-containers`)
+1. **Using Devcontainers**:
+   - Open the project in VS Code.
+   - Run `Dev Containers: Rebuild and Reopen in Container` from the Command Palette.
 
-### Application Build
-#### Application Build Option 1 (with VSCode/Devcontainers)
-- Create a VSCode workspace for project
-- `Cmd`+`Shift`+`P` (Mac) to open commands
-- `Dev Containers: Open Workspace in Container`
-- Utilizes docker-compose.local.yml and .devcontainer/devcontainer.json
+2. **Without Devcontainers**:
+   - Start the application:
+     ```bash
+     docker compose -f compose/local/docker-compose.local.yml up
+     ```
 
-#### Application Build Option 2 (without VSCode/Devcontainers)
-Build and run the local application with
+### Documentation
 
-    docker compose -f docker-compose.local.yml up
+- Build and serve documentation:
+  ```bash
+  docker compose -f compose/local/docker-compose.docs.yml up
+  ```
 
-### Documentation Build
-Build and run the project's Sphinx documentation with
+## Development Workflow
 
-    docker compose -f docker-compose.docs.yml up
+- **Install Dependencies**:
+  Inside the devcontainer:
+  ```bash
+  poetry add <package-name>
+  poetry install
+  ```
 
-## Development
+- **Linting**:
+  ```bash
+  make lint
+  ```
 
-### Building Container
-- In VSCode, open the project folder as a workspace and save workspace to root directory
-- Select Rebuild and Reopen in Container when the option appears to open project in a devcontainer
-- If the devcontainer ever needs rebuilt, Cmd + Shift + P (Mac Default) and select Dev Containers: Rebuild Container
+- **Type Checking**:
+  ```bash
+  make typecheck
+  ```
 
-### Source Code
-- All project source code should be placed in `app/`
-- Source code that is added or modified within the container will be reflected on the host machine
+- **Run Tests**:
+  ```bash
+  make test
+  ```
 
-### Installing Dependencies
-Poetry is the dependency manager for this project. Dependencies can be added within the devcontainer with:
+- **Test Coverage**:
+  ```bash
+  coverage run -m pytest
+  coverage html
+  open htmlcov/index.html
+  ```
 
-    $ poetry add PIP_LIBRARY_NAME
-    $ poetry install
+## Deployment
 
-- Ensure the generated poetry.lock file is committed to the repository
+- Modify .production files for production configurations.
+- Use docker-compose.production.yml for production builds.
 
-### Development Environment
+## CI/CD
 
-#### Secrets
+- **GitHub Actions**: Automatically runs linting, testing, and builds on pull requests and pushes to `main` or `master`.
 
-- Modify `.envs/.local/.app` or `.envs/.local/.postgres` for local development environments.
-- Modify `.envs/.production/.app` or `.envs/.production/.postgres` for production environments.
+## License
 
-### Linting
-
-Uses ruff to check and fix linting issues.
-
-    make lint
-
-### Type Checking
-
-Mypy for type checking.
-
-    make typecheck
-
-### Tests
-
-    make test
-
-#### Test Coverage
-
-Runs tests on Python and HTML, generating an output HTML report.
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
-
-#### Testing Github Actions
-
-We can use [`act`](https://github.com/nektos/act) to test Github Actions locally
+This project is licensed under the MIT License.
