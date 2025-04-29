@@ -21,6 +21,7 @@
     "service": "local-app", // Primary service to attach to
     "remoteUser": "dev-user",
     "workspaceFolder": "/app",
+    "initializeCommand": "make setup",
     "customizations": {
         "vscode": {
             "settings": {
