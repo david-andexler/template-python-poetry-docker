@@ -1,5 +1,5 @@
 {
-    "name": "app_template_dev",
+    "name": "template-app-dev",
     "dockerComposeFile": [
         "../compose/local/docker-compose.local.yml",
         "../compose/local/docker-compose.docs.yml" // Add the docs Compose file here
@@ -56,5 +56,5 @@
             ]
         }
     },
-    "postCreateCommand": "bash .devcontainer/post-create.sh"
+    "postCreateCommand": "bash .devcontainer/setup/post-create.sh"
 }
