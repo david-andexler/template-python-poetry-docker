@@ -40,9 +40,13 @@ jobs:
       - name: Checkout Code Repository
         uses: actions/checkout@v4
       # Eventually, this should be moved over to env variables inserted into the docker image
-      - name: Copy .sample environment files into .live
+      - name: Copy .sample environment files
         run: |
-          make setup
+          mkdir -p .envs/.local/.live
+          cp .envs/.local/.sample/. .envs/.local/.live/
+      # - name: Copy .sample environment files into .live
+      #   run: |
+      #     make setup
 
       - name: Build the Stack
         run: docker compose -f compose/local/docker-compose.local.yml build local-app
