@@ -157,6 +157,7 @@ typings/
 
 # Devcontainer files
 .devcontainer/bash_history
+.devcontainer/user-extensions.json
 
 
 ### Windows template
