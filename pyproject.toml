@@ -1,5 +1,5 @@
 [project]
-name = "anki-card-generator"
+name = "template-python-poetry-docker"
 version = "0.1.0"
 description = ""
 authors = [
@@ -8,8 +8,6 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13,<3.14"
 dependencies = [
-    "pytest>=8.3.5,<9.0.0",
-    "pytest-cov>=4.0.0,<5.0.0",
 ]
 
 [build-system]
@@ -24,6 +22,8 @@ optional = true
 
 [tool.poetry.group.dev.dependencies]
 mypy = ">=1.15.0,<2.0.0"
+pytest = ">=8.3.5,<9.0.0"
+pytest-cov = ">=4.0.0,<5.0.0"
 pytest-sugar = ">=1.0.0,<2.0.0"
 sphinx = ">=8.2.1,<9.0.0"
 sphinx-autobuild = ">=2024.10.3,<2025.0.0"
@@ -40,7 +40,6 @@ psycopg = {version = ">=3.2.5,<4.0.0", extras = ["c"]}
 # ==== pytest ====
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "--ds=config.settings.test --reuse-db --import-mode=importlib"
 python_files = [
     "tests.py",
     "test_*.py",
