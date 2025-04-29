@@ -1,5 +1,5 @@
 [project]
-name = "template-python-poetry-docker"
+name = "anki-card-generator"
 version = "0.1.0"
 description = ""
 authors = [

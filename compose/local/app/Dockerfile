@@ -35,6 +35,7 @@ RUN apt-get update \
         libpq-dev  \
         wait-for-it \
         gettext \
+        jq \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
 
@@ -62,7 +63,7 @@ COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 WORKDIR $PYSETUP_PATH
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
-    sudo build-essential git bash-completion nano ssh make wait-for-it libpq-dev
+    sudo build-essential git bash-completion nano ssh make wait-for-it libpq-dev jq
 
 # Installs dev-only dependencies
 RUN --mount=type=cache,target=/root/.cache \
@@ -73,6 +74,10 @@ RUN groupadd --gid 1000 dev-user \
   && useradd --uid 1000 --gid dev-user --shell /bin/bash --create-home dev-user \
   && echo dev-user ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/dev-user \
   && chmod 0440 /etc/sudoers.d/dev-user
+
+# Give dev-user ownership of $PYSETUP_PATH
+RUN chown -R dev-user:dev-user $PYSETUP_PATH \
+  && chown -R dev-user:dev-user /home/dev-user
 
 # Code mount point
 WORKDIR $APP_PATH

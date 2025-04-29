@@ -11,6 +11,7 @@ Welcome to PROJECT's documentation!
    :caption: Contents:
 
    howto
+   devenvironment
 
 
 Indices and tables

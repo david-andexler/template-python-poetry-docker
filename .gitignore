@@ -155,10 +155,9 @@ typings/
 !.vscode/extensions.json
 *.code-workspace
 
-# Local History for devcontainer
+# Devcontainer files
 .devcontainer/bash_history
-
-
+.devcontainer/user-extensions.json
 
 
 ### Windows template
