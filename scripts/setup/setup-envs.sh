@@ -3,9 +3,21 @@
 SAMPLE_DIR=".envs/.local/.sample"
 LIVE_DIR=".envs/.local/.live"
 
+# Ensure the sample directory exists
+if [ ! -d "$SAMPLE_DIR" ]; then
+    echo "Error: Sample directory '$SAMPLE_DIR' does not exist."
+    exit 1
+fi
+
 mkdir -p "$LIVE_DIR"
 
-for sample_file in "$SAMPLE_DIR"/* "$SAMPLE_DIR"/.*; do
+# Check if the sample directory contains any files
+if [ -z "$(ls -A "$SAMPLE_DIR")" ]; then
+    echo "Warning: Sample directory '$SAMPLE_DIR' is empty. Nothing to copy."
+    exit 0
+fi
+
+for sample_file in "$SAMPLE_DIR"/.*; do
     base_name=$(basename "$sample_file")
     if [[ "$base_name" == "." || "$base_name" == ".." || "$base_name" == ".gitkeep" || "$base_name" == ".DS_Store" ]]; then
         continue
