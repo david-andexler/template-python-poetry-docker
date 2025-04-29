@@ -43,7 +43,7 @@ jobs:
       - name: Copy .sample environment files
         run: |
           mkdir -p .envs/.local/.live
-          cp .envs/.local/.sample/. .envs/.local/.live/
+          cp -a .envs/.local/.sample/ .envs/.local/.live/
       # - name: Copy .sample environment files into .live
       #   run: |
       #     make setup
