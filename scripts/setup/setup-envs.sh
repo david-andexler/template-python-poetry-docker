@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SAMPLE_DIR="./.envs/.local/.sample"
-LIVE_DIR="./.envs/.local/.live"
+SAMPLE_DIR=".envs/.local/.sample"
+LIVE_DIR=".envs/.local/.live"
 
 mkdir -p "$LIVE_DIR"
 
